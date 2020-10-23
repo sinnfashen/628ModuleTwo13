@@ -1,0 +1,38 @@
+---
+title: "R Notebook"
+author: hanlin.tang
+date: 10/23/20
+output: html_notebook
+---
+
+## Prepare
+```{r}
+data = read.csv("data/BodyFat.csv")
+data2 = subset(data, select = -DENSITY)
+n=252
+```
+
+
+## AIC
+
+### Without interaction
+```{r}
+step(lm(BODYFAT~1, data2), scope = formula(lm(BODYFAT~., data2)), direction = "both", k=2)
+```
+
+### With interaction
+```{r}
+step(lm(BODYFAT~1, data2), scope = formula(lm(BODYFAT~.^2, data2)), direction = "both", k=2)
+```
+
+## BIC
+
+### Without interaction
+```{r}
+step(lm(BODYFAT~1, data2), scope = formula(lm(BODYFAT~., data2)), direction = "both", k=log(n))
+```
+
+### With interaction
+```{r}
+step(lm(BODYFAT~1, data2), scope = formula(lm(BODYFAT~.^2, data2)), direction = "both", k=log(n))
+```
