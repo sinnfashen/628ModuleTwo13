@@ -6,20 +6,69 @@ output: html_document
 runtime: shiny
 ---
 
-The [R plugin](https://www.jetbrains.com/help/pycharm/r-plugin-support.html) for IntelliJ-based IDEs provides
-handy capabilities to work with the [R Markdown](https://www.jetbrains.com/help/pycharm/r-markdown.html) files.
-To [add](https://www.jetbrains.com/help/pycharm/r-markdown.html#add-code-chunk) a new R chunk,
-position the caret at any line or the code chunk, then click "+".
-
-The code chunk appears:
 ```{r}
+library(shiny)
 ```
 
-Type any R code in the chunk, for example:
 ```{r}
-mycars <- within(mtcars, { cyl <- ordered(cyl) })
-mycars
+ui <- fluidPage(
+  titlePanel("Body Fat Calculator"),
+
+  fluidRow(
+    column(3, 
+      wellPanel(
+        h3("With Density"),
+        h5("If you have data of your density determined from underwater weighing, this will provide a much accurate result."),
+        numericInput("density", label = h3("Density"), value = 1),
+        actionButton("calculate1", label = "calculate")
+      ),
+      wellPanel(
+        h4("Without Density"),
+        numericInput("abdomen", label = h3("Abdomen (cm)"), value = 1),
+        numericInput("weight", label = h3("Weight (lbs)"), value = 1),
+        numericInput("wrist", label = h3("Wrist (cm)"), value = 1),
+        actionButton("calculate2", label= "calculate")
+      )
+    ),
+    column(9,
+      wellPanel(
+        textOutput("result_text")
+      )
+    )
+  )
+)
 ```
 
-Now, click the **Run** button on the chunk toolbar to [execute](https://www.jetbrains.com/help/pycharm/r-markdown.html#run-r-code) the chunk code. The result should be placed under the chunk.
-Click the **Knit and Open Document** to built and preview an output.
+```{r}
+
+
+server <- function(input, output) {
+  
+  solve_by_density = function() {
+    paste("Your body fat rate is:", 495/input$density - 450)
+  }
+  
+  observeEvent(input$calculate1, {
+      text_reactive$text <- solve_by_density()
+  })
+  
+  observeEvent(input$calculate2, {
+    text_reactive$text <- 'Model'
+  })
+  
+  text_reactive <- reactiveValues(
+    text = "No data has been submitted yet."
+  )
+
+  output$result_text <- renderText({
+    text_reactive$text
+  })
+#  observeEvent(input$calculate1, solve_by_density())
+    
+  # ans = density_function()
+}
+```
+
+```{r}
+shinyApp(ui = ui, server = server)
+```

@@ -1,8 +1,11 @@
 ---
 title: "R Notebook"
-author: hanlin.tang
-date: 10/23/20
-output: html_notebook
+author: "hanlin.tang"
+date: "10/23/20"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
 ---
 
 ## Prepare
