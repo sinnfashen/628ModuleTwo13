@@ -6,11 +6,11 @@ output: html_document
 runtime: shiny
 ---
 
-```{r}
+```{r echo=FALSE}
 library(shiny)
 ```
 
-```{r}
+```{r echo=FALSE}
 ui <- fluidPage(
   titlePanel("Body Fat Calculator"),
 
@@ -39,7 +39,7 @@ ui <- fluidPage(
 )
 ```
 
-```{r}
+```{r echo=FALSE}
 
 
 server <- function(input, output) {
@@ -69,6 +69,6 @@ server <- function(input, output) {
 }
 ```
 
-```{r}
+```{r echo=FALSE}
 shinyApp(ui = ui, server = server)
 ```
