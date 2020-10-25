@@ -1,0 +1,124 @@
+---
+title: "data_clean"
+author: "Hanlin Tang"
+date: "2020年10月25日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+lable_outlier = function(data, value, direction) {
+  if(direction){
+    hlev <- which(data>=value)
+  }else{
+    hlev <- which(data<=value)
+  }
+  text(hlev, data[hlev], 
+     labels=hlev)
+}
+```
+
+## Summary
+
+```{r}
+data = read.csv("data/BodyFat.csv")
+data['by_density'] = 495/data$DENSITY - 450
+data['diff'] = data$BODYFAT - data$by_density
+n=252
+summary(data)
+```
+
+## Subcategory
+
+```{r pressure, echo=FALSE}
+plot(data2$BODYFAT)
+lable_outlier(data$BODYFAT, 40, TRUE)
+lable_outlier(data$BODYFAT, 1, FALSE)
+boxplot(data2$BODYFAT)
+```
+
+```{r pressure, echo=FALSE}
+plot(data$diff)
+lable_outlier(data$diff, 3, TRUE)
+lable_outlier(data$diff, -3, FALSE)
+boxplot(data$diff)
+```
+
+```{r pressure, echo=FALSE}
+plot(data$WEIGHT)
+lable_outlier(data$WEIGHT, 250, TRUE)
+boxplot(data$WEIGHT)
+```
+
+
+```{r pressure, echo=FALSE}
+plot(data$HEIGHT)
+lable_outlier(data$HEIGHT, 60, FALSE)
+boxplot(data$HEIGHT)
+# 42 is wrong
+```
+
+
+```{r pressure, echo=FALSE}
+plot(data2$ADIPOSITY)
+lable_outlier(data$ADIPOSITY, 35, TRUE)
+boxplot(data2$ADIPOSITY)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$NECK)
+lable_outlier(data$NECK, 45, TRUE)
+boxplot(data2$NECK)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$CHEST)
+lable_outlier(data$CHEST, 125, TRUE)
+boxplot(data2$CHEST)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$ABDOMEN)
+lable_outlier(data$ABDOMEN, 125, TRUE)
+boxplot(data2$ABDOMEN)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$HIP)
+lable_outlier(data$HIP, 120, TRUE)
+boxplot(data2$HIP)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$THIGH)
+lable_outlier(data$THIGH, 75, TRUE)
+boxplot(data2$THIGH)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$KNEE)
+lable_outlier(data$KNEE, 45, TRUE)
+boxplot(data2$KNEE)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$ANKLE)
+lable_outlier(data$ANKLE, 27, TRUE)
+boxplot(data2$ANKLE)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$BICEPS)
+lable_outlier(data$BICEPS, 40, TRUE)
+boxplot(data2$BICEPS)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$FOREARM)
+boxplot(data2$FOREARM)
+```
+
+```{r pressure, echo=FALSE}
+plot(data2$WRIST)
+boxplot(data2$WRIST)
+```

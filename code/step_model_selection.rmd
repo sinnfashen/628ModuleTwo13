@@ -11,7 +11,7 @@ output:
 ## Prepare
 ```{r}
 data = read.csv("data/BodyFat.csv")
-data2 = subset(data, select = -DENSITY)
+data2 = subset(data, select = -c(IDNO,DENSITY))
 n=252
 ```
 
