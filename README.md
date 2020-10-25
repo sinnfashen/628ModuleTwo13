@@ -23,6 +23,3 @@ The code folder contains our actual R codes, including analysis and shiny.
 
 Set workspace as the root of this project.
 
-## Notes
-
-Github account ZhiyuJi and RobinhoodKi in the contributor list both belong to Robin Ji
