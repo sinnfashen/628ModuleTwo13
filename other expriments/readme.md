@@ -8,7 +8,7 @@ When we on our way to find the easiest and good performance model, we noticed th
 
 we aim to make the model simple and powerful. We only use three parameters here so the model is quite simple.Besides, we can see the R square in different folder are all greater than 0.6 except for the smallest one. The most important thing is that our model's performance is quite steady,it means that our model will also work well in the test set and we don't need to consider the problem like over-fitting,etc.
 
-<img src="/Users/robin/Desktop/628HW2/final/628ModuleTwo13/other expriments/Final_model.png" alt="Final_model" style="zoom:67%;" />
+<img src="https://github.com/sinnfashen/628ModuleTwo13/blob/master/other%20expriments/Final_model.png" style="zoom:67%;" />
 
 
 
