@@ -2,7 +2,7 @@
 
 This is a course project repository of Group 13 for Module Two of STAT 628 in University of Wisconsin - Madison in Fall 2020.
 
-Our group members are: Hanlin Tang (sinnfashen), Yuhan Zhou (octaviaus), and Robin Li (RobinhoodKi\ZhiyuJi).
+Our group members are: Hanlin Tang (sinnfashen), Yuhan Zhou (octaviaus), and Robin Ji (RobinhoodKi\ZhiyuJi).
 
 ## Objective
 
@@ -25,4 +25,4 @@ Set workspace as the root of this project.
 
 ## Notes
 
-Github account ZhiyuJi and RobinhoodKi in the contributor list both belong to Robin
+Github account ZhiyuJi and RobinhoodKi in the contributor list both belong to Robin Ji
