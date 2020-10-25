@@ -14,16 +14,16 @@ ui <- fluidPage(
            wellPanel(
              h4("Without Density"),
              numericInput("abdomen", label = h3("Abdomen (cm)"), value = 0),
-             numericInput("thigh", label = h3("thigh (cm)"), value = 0),
+             numericInput("weight", label = h3("Weight (lbs)"), value = 0),
              numericInput("wrist", label = h3("Wrist (cm)"), value = 0),
-             numericInput("hip", label = h3("hip (cm)"), value = 0),
              actionButton("calculate2", label= "calculate")
            )
     ),
     column(9,
            wellPanel(
              textOutput("result_text")
-           )
+           ),
+           p(em("Developed by"),br("Hanlin Tang (htang79@wisc.edu)"),style="text-align:center; font-family: times")
     )
   )
 )
@@ -38,20 +38,20 @@ server <- function(input, output) {
       "Density shall not be negative. (Reminder: density of human is usually close to 1)."
     }
     body_fat = 495/input$density - 450
-    if (body_fat <= 0){
-      paste("Data doesn't seem to fall into a reasonable range. The output would be negative: ", body_fat)
+    if (body_fat < 0 || body_fat > 100){
+      paste("Data doesn't seem to fall into a reasonable range. The output would be: ", body_fat, "%")
     }else{
-      paste("Your body fat rate is:", body_fat)
+      paste("Your body fat rate is:", body_fat, "%")
     }
     
   }
   
   solve_by_other = function() {
-    body_fat = -82.937737 + 0.84*input$abdomen + -1.95*input$wrist + 1.43*input$thigh + 0.55*input$hip - 0.0134*input$thigh*input$hip
-    if (body_fat <= 0){
-      paste("Data doesn't seem to fall into a reasonable range. The output would be negative: ", body_fat)
+    body_fat = -47.93+1.164*input$abdomen-1.433*input$wrist+0.06032*input$weight-0.001518*input$weight*input$abdomen
+    if (body_fat < 0 || body_fat > 100){
+      paste("Data doesn't seem to fall into a reasonable range. The output would be: ", body_fat, "%")
     }else{
-      paste("Your body fat rate is:", body_fat)
+      paste("Your body fat rate is:", body_fat, "%")
     }
   }
   
