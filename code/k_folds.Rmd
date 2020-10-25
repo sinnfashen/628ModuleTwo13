@@ -1,0 +1,64 @@
+---
+title: "k_folds"
+author: "Hanlin Tang"
+date: "2020年10月25日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library(data.table)
+library(pROC)
+library(caret)
+data = read.csv("data/BodyFat.csv")
+clean_data = subset(data, select = -c(DENSITY))[-c(48, 76, 182, 96),]
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+k_folds = function(k, equation) {
+  set.seed(20)
+  folds=createFolds(y=clean_data$IDNO,k=12)
+  r2=c(1:12)
+  for(i in 1:12){
+    data_test=clean_data[folds[[i]],]
+    data_train=clean_data[-folds[[i]],]
+    model=lm(equation,data=data_train)
+    result=predict(model,data_test)
+    error=result-data_test$BODYFAT
+    error=sum(error^2)
+    dividant=sum((mean(data_test$BODYFAT)-data_test$BODYFAT)^2)
+    r2[i]=1-(error/dividant)  
+  }
+  model=lm(equation, data=clean_data)
+  print(summary(model))
+  plot(sort(r2))
+  return(r2)
+}
+```
+
+```{r}
+origini = k_folds(12, BODYFAT~ABDOMEN+WRIST+THIGH*HIP)
+```
+
+
+
+```{r}
+new = k_folds(12, BODYFAT~WRIST + ABDOMEN*WEIGHT)
+```
+
+```{r}
+plot(sort(origini)-sort(new))
+```
