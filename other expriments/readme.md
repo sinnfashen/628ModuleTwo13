@@ -18,7 +18,7 @@ we aim to make the model simple and powerful. We only use three parameters here 
 
 ##### Model 1: Bodyfat ~ WRIST + ABDOMEN + THIGH(Full Model)
 
-<img src="/Users/robin/Desktop/628HW2/final/628ModuleTwo13/other expriments/Expri_1.png" style="zoom:67%;" />
+<img src="https://github.com/sinnfashen/628ModuleTwo13/blob/master/other%20expriments/Expri_1.png" style="zoom:67%;" />
 
  We do 12-folder cross validation test to judge the performance of a model. Compared with final model, the R square of this model varies a lot.It means that the model may overfit the train set and it can't perform well in general.Besides, this model is more complicate than our final model.However, this model still got a good performance in average.
 
@@ -28,6 +28,6 @@ we aim to make the model simple and powerful. We only use three parameters here 
 
 
 
-<img src="/Users/robin/Desktop/628HW2/final/628ModuleTwo13/other expriments/Expri_2.png" alt="Expri_2" style="zoom:67%;" />
+<img src="https://github.com/sinnfashen/628ModuleTwo13/blob/master/other%20expriments/Expri_2.png" style="zoom:67%;" />
 
 This model only takes two parameters,"weight" and "Abdomen", which is super straightforward. In the meantime, it's still perfom well. The bad part of this model is that there exists a folder whose R square is quite low(<0.4) .So we think this model is a little wrose than our final one.
